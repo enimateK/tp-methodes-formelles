@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock clk;
+chan press;</declaration>
+	<template>
+		<name x="5" y="5">Mouse</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="391" y="8">
+			<name x="381" y="-26">doucleclick</name>
+		</location>
+		<location id="id1" x="178" y="-68">
+			<name x="168" y="-102">click</name>
+		</location>
+		<location id="id2" x="-119" y="0">
+			<name x="-129" y="-34">iddle</name>
+		</location>
+		<init ref="id2"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-110" y="-93">clk&gt;3</label>
+			<nail x="-119" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="guard" x="255" y="-93">clk&lt;3</label>
+			<label kind="synchronisation" x="255" y="-68">press?</label>
+			<nail x="391" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<nail x="161" y="110"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-25" y="-25">press?</label>
+			<nail x="178" y="0"/>
+		</transition>
+	</template>
+	<template>
+		<name>User</name>
+		<location id="id3" x="-204" y="-204">
+		</location>
+		<location id="id4" x="-102" y="-272">
+			<name x="-112" y="-306">DoubleClick</name>
+		</location>
+		<location id="id5" x="-102" y="42">
+			<name x="-112" y="8">Click</name>
+		</location>
+		<location id="id6" x="-331" y="-127">
+		</location>
+		<init ref="id6"/>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-186" y="-255">press!</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id6"/>
+			<nail x="-331" y="-272"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-313" y="-182">press!</label>
+			<label kind="assignment" x="-313" y="-165">clk=0</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<nail x="-331" y="42"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-212" y="-68">press!</label>
+			<label kind="assignment" x="-313" y="-63">clk=0</label>
+			<nail x="-161" y="0"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Process = Mouse();
+Process2 = User();
+// List one or more processes to be composed into a system.
+system Process, Process2;
+    </system>
+	<queries>
+	</queries>
+</nta>

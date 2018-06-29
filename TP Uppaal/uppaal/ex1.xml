@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan a,b;</declaration>
+	<template>
+		<name x="5" y="5">Template</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="161" y="59">
+			<name x="151" y="25">Fin</name>
+		</location>
+		<location id="id1" x="0" y="0">
+			<name x="-10" y="-34">Debut</name>
+		</location>
+		<init ref="id1"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="18" y="-17">b?</label>
+			<nail x="42" y="110"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="18" y="-9">a!</label>
+			<nail x="127" y="-34"/>
+		</transition>
+	</template>
+	<template>
+		<name>Template0</name>
+		<location id="id2" x="204" y="-8">
+			<name x="195" y="-42">Fin</name>
+		</location>
+		<location id="id3" x="0" y="0">
+			<name x="-10" y="-34">Debut</name>
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="18" y="-55">b!</label>
+			<nail x="144" y="-76"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="77" y="17">a?</label>
+			<nail x="59" y="76"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Process = Template();
+ProcessTwo = Template();
+ProcessThree = Template0();
+// List one or more processes to be composed into a system.
+system Process, ProcessTwo, ProcessThree;</system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt;Process.Fin
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt;ProcessTwo.Fin
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt;ProcessThree.Debut
+			</formula>
+			<comment>
+			</comment>
+		</query>
+	</queries>
+</nta>

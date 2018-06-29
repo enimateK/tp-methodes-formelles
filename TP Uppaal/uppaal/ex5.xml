@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan appel12, appel21, appel13, appel31, appel23, appel32, rep12, rep21, rep13, rep31, rep23, rep32;
+int partage;</declaration>
+	<template>
+		<name x="5" y="5">Personne1</name>
+		<declaration>// Place local declarations here.
+int secret1 = 1;</declaration>
+		<location id="id0" x="221" y="161">
+		</location>
+		<location id="id1" x="-195" y="161">
+		</location>
+		<location id="id2" x="280" y="-102">
+		</location>
+		<location id="id3" x="-187" y="-127">
+		</location>
+		<location id="id4" x="0" y="0">
+		</location>
+		<init ref="id4"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="195" y="67">rep13!</label>
+			<label kind="assignment" x="161" y="42">partage=secret1</label>
+			<nail x="195" y="93"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-144" y="135">rep12!</label>
+			<label kind="assignment" x="-161" y="153">partage=secret1</label>
+			<nail x="-118" y="118"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="127" y="110">appel31?</label>
+			<label kind="assignment" x="34" y="153">secret1 = secret1|partage</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-195" y="93">appel21?</label>
+			<label kind="assignment" x="-306" y="68">secret1 = secret1|partage</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-221" y="-34">rep21?</label>
+			<label kind="assignment" x="-306" y="-59">secret1 = secret1|partage</label>
+			<nail x="-68" y="-17"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-153" y="-144">appel12!</label>
+			<label kind="assignment" x="-136" y="-127">partage=secret1</label>
+			<nail x="-34" y="-25"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="178" y="-136">rep31?</label>
+			<label kind="assignment" x="93" y="-170">secret1 = secret1|partage</label>
+			<nail x="144" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="237" y="-76">appel13!</label>
+			<label kind="assignment" x="212" y="-51">partage=secret1</label>
+			<nail x="34" y="-25"/>
+		</transition>
+	</template>
+	<template>
+		<name>Personne2</name>
+		<declaration>int secret2 = 2;</declaration>
+		<location id="id5" x="153" y="42">
+		</location>
+		<location id="id6" x="-59" y="-102">
+		</location>
+		<location id="id7" x="-229" y="59">
+		</location>
+		<location id="id8" x="-229" y="-246">
+		</location>
+		<location id="id9" x="136" y="-246">
+		</location>
+		<init ref="id6"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="126" y="-47">rep23!</label>
+			<label kind="assignment" x="93" y="-85">partage=secret2</label>
+			<nail x="126" y="-21"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-153" y="51">rep21!</label>
+			<label kind="assignment" x="-170" y="34">partage=secret2</label>
+			<nail x="-152" y="16"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="59" y="8">appel32?</label>
+			<label kind="assignment" x="-42" y="42">secret2=secret2|partage</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-263" y="-8">appel12?</label>
+			<label kind="assignment" x="-348" y="-25">secret2=secret2|partage</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-255" y="-195">rep12?</label>
+			<label kind="assignment" x="-211" y="-182">secret2=secret2|partage</label>
+			<nail x="-127" y="-119"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-195" y="-263">appel21!</label>
+			<label kind="assignment" x="-178" y="-246">partage=secret2</label>
+			<nail x="-161" y="-203"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="51" y="-254">rep32?</label>
+			<label kind="assignment" x="77" y="-237">secret2=secret2|partage</label>
+			<nail x="59" y="-229"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="93" y="-220">appel23!</label>
+			<label kind="assignment" x="68" y="-195">partage=secret2</label>
+			<nail x="68" y="-203"/>
+		</transition>
+	</template>
+	<template>
+		<name>Personne3</name>
+		<declaration>int secret3 = 4;</declaration>
+		<location id="id10" x="102" y="59">
+		</location>
+		<location id="id11" x="-59" y="-102">
+		</location>
+		<location id="id12" x="-221" y="59">
+		</location>
+		<location id="id13" x="-229" y="-246">
+		</location>
+		<location id="id14" x="102" y="-229">
+		</location>
+		<init ref="id11"/>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="76" y="-35">rep32!</label>
+			<label kind="assignment" x="93" y="-25">partage=secret3</label>
+			<nail x="76" y="-9"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-153" y="42">rep31!</label>
+			<label kind="assignment" x="-170" y="25">partage=secret3</label>
+			<nail x="-144" y="16"/>
+			<nail x="-136" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="8" y="25">appel23?</label>
+			<label kind="assignment" x="-85" y="51">secret3=secret3|partage</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-255" y="-8">appel13?</label>
+			<label kind="assignment" x="-323" y="-34">secret3=secret3|partage</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-271" y="-212">rep13?</label>
+			<label kind="assignment" x="-348" y="-178">secret3=secret3|partage</label>
+			<nail x="-127" y="-119"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-195" y="-263">appel31!</label>
+			<label kind="assignment" x="-187" y="-246">partage=secret3</label>
+			<nail x="-161" y="-203"/>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="17" y="-237">rep23?</label>
+			<label kind="assignment" x="43" y="-220">secret3=secret3|partage</label>
+			<nail x="25" y="-212"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="59" y="-203">appel32!</label>
+			<label kind="assignment" x="42" y="-178">partage=secret3</label>
+			<nail x="34" y="-186"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Process = Personne1();
+Process2 = Personne2();
+Process3 = Personne3();
+// List one or more processes to be composed into a system.
+system Process, Process2, Process3;
+    </system>
+	<queries>
+	</queries>
+</nta>

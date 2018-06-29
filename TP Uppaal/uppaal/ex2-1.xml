@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+int req1, req2, turn;</declaration>
+	<template>
+		<name x="5" y="5">Template</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="-102" y="42">
+			<name x="-112" y="8">CS</name>
+		</location>
+		<location id="id1" x="8" y="127">
+			<name x="-2" y="93">wait</name>
+		</location>
+		<location id="id2" x="127" y="42">
+			<name x="117" y="8">want</name>
+		</location>
+		<location id="id3" x="17" y="-34">
+			<name x="7" y="-68">Iddle</name>
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-84" y="4">req1=0</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-84" y="50">turn==1 or req2==0</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="assignment" x="26" y="84">turn=2</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="35" y="4">req1=1</label>
+		</transition>
+	</template>
+	<template>
+		<name>Template0</name>
+		<location id="id4" x="51" y="76">
+			<name x="41" y="42">CS</name>
+		</location>
+		<location id="id5" x="170" y="0">
+			<name x="160" y="-34">Iddle</name>
+		</location>
+		<location id="id6" x="161" y="161">
+			<name x="151" y="127">wait</name>
+		</location>
+		<location id="id7" x="280" y="76">
+			<name x="270" y="42">want</name>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="assignment" x="69" y="38">req2=0</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id4"/>
+			<label kind="guard" x="69" y="84">turn==2 or req1==0</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="179" y="118">turn=1</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="assignment" x="188" y="38">req2=1</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Process = Template();
+Process2 = Template0();
+// List one or more processes to be composed into a system.
+system Process, Process2;
+    </system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt;Process.CS and Process2.CS
+			</formula>
+			<comment>
+			</comment>
+		</query>
+	</queries>
+</nta>
